@@ -1,0 +1,58 @@
+<!-- <nav class="navbar bg-dark">
+    <div class="container-fluid">
+        <a href="" class="navbar-brand" style="color: aliceblue;">E.Commerce Website</a>
+        <button routerLink="/" class="btn btn-warning text-light">Back</button>
+    </div>
+</nav> -->
+
+<!--Display Single Product-->
+<div class="container"><button class="btn btn-warning text-light mt-2 text-black" routerLink="/"><<-- Back</button>
+    <div class="row product-detail">
+        <div class="col-sm-12">
+            <div id="carouselExampleIndicators" class="carousel carousel-dark slide">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="{{productdata?.images[0]}}" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{{productdata?.images[1]}}" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{{productdata?.images[2]}}" class="d-block w-100" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            <!-- <img src="{{productdata?.images[0]}}" alt="" class="Product-img"> -->
+            <div>
+                <button class="btn btn-primary">Buy Now</button>&nbsp;
+                <button (click)="addtocart()" *ngIf="showadd" class="btn btn-success">Add To Cart</button>&nbsp;
+                <button (click)="removeitem()" *ngIf="showremove" class="btn btn-info">Remove Item</button>
+            </div>
+        </div>
+    </div>
+    <!--Right Side-->
+    <div class="col-sm-12">
+        <div>
+            <h1>{{productdata?.title}}</h1>
+            <p style="color: green;">On Special Discount: {{productdata?.discountPercentage}}%</p>
+            <h3>₹ {{productdata?.price}}00</h3>
+            <strong>Category:&nbsp;{{productdata?.category}}</strong><br>
+            <strong>About: {{productdata?.description}}</strong><br>
+            <p>{{productdata?.detail}}</p>
+            <strong>Stock left: {{productdata?.stock}} Units</strong>
+        </div>
+    </div>
+</div>

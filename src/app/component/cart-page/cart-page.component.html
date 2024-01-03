@@ -1,0 +1,107 @@
+<ng-container *ngIf="showproduct.length !=0">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-9">
+                <h3>Selected Products:</h3>
+                <table class="table table-hover mt-3 table-borderless">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Product Image</th>
+                            <th scope="col">Brand</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of showproduct">
+                            <td><img src="{{item.images[0]}}" alt="" style="width: 120px;"></td>
+                            <td>{{item.brand}}</td>
+                            <td>{{item.category}}</td>
+                            <td>₹ {{item.price}}00</td>
+                            <td><button (click)="delete(item)" class="btn btn-danger">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Total Calculation -->
+            <div class="col-sm-3">
+                <h1>Total Amount:</h1><br>
+                <strong style="font-size: 35px; color: green;">₹ {{totalamount}}00</strong>
+                <div class="btn-group mt-3">
+                    <button (click)="this.addressForm=true" class="btn btn-primary">Check Out</button>&nbsp;
+                    <button (click)="Empty()" class="btn btn-secondary">Empty Cart</button>
+                </div>
+                <!-- Form Start -->
+                <div class="mt-3" *ngIf="addressForm">
+                    <form [formGroup]="myForm">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email:</label>
+                            <input type="email" class="form-control" formControlName="email" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" placeholder="Enter your email">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                                else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Name:</label>
+                            <input type="text" class="form-control" formControlName="name" id="exampleInputPassword1"
+                                placeholder="Enter Your Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Mobile Number:</label>
+                            <input type="text" class="form-control" formControlName="mobile" id="exampleInputPassword1"
+                                placeholder="Mobile Number">
+                        </div>
+                        <!-- <fieldset class="form-group">
+                            <div class="row">
+                                <legend class="col-form-label pt-0">Payment Type:</legend>
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1"
+                                            value="option1" [(ngModel)]="selectedOption" checked>
+                                        <label class="form-check-label" for="gridRadios1">
+                                            Online
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input [(ngModel)]="selectedOption" class="form-check-input" type="radio" name="gridRadios" id="gridRadios2"
+                                            value="option2">
+                                        <label class="form-check-label" for="gridRadios2">
+                                            Cash
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset> -->
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Address:</label>
+                            <textarea class="form-control" formControlName="address" id="exampleFormControlTextarea1"
+                                placeholder="Enter Your Address" rows="3"></textarea>
+                        </div>
+                        <form>
+                            <label>Payment Type:</label><br>
+                            <input type="radio" name="option" value="A" [(ngModel)]="selectedOption"> Pay Now (via Online) <br>
+                            <input type="radio" name="option" value="C" [(ngModel)]="selectedOption" checked> Cash On Delivery <br>
+                            <button type="submit" (click)="submitOption()" [disabled]="this.myForm.invalid"
+                                class="btn btn-success mt-2">Order</button>&nbsp;
+                            <button type="submit" (click)="cancel()" class="btn btn-dark mt-2">Cancel</button>
+                        </form>
+                    </form>
+                </div>
+                <!-- Form End -->
+            </div>
+        </div>
+    </div>
+
+</ng-container>
+
+<!-- Cart Empty -->
+<ng-container *ngIf="showproduct.length==0">
+    <div class="card">
+        <div class="center">
+            <h4>Your Cart is Empty</h4>
+            <h6>Please Add Item</h6>
+            <button routerLink="/" class="btn btn-dark">Shop Now</button>
+        </div>
+    </div>
+</ng-container>
